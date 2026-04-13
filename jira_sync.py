@@ -4,15 +4,15 @@ from requests.auth import HTTPBasicAuth
 from datetime import datetime, timedelta, timezone
 
 # ─── CONFIGURAÇÕES - JIRA ORIGEM ─────────────────────────────────────────────
-SRC_BASE_URL    = ""
-SRC_EMAIL       = "x"
-SRC_API_TOKEN   = "x"
+SRC_BASE_URL    = "https://seu-dominio.atlassian.net"
+SRC_EMAIL       = "seu-email@empresa.com"
+SRC_API_TOKEN   = "seu_token_aqui"
 SRC_ACCOUNT_ID  = "" # deixe vazio
 
 # ─── CONFIGURAÇÕES - JIRA DESTINO ────────────────────────────────────────────
-DST_BASE_URL    = "https://jira-uxorit.atlassian.net"
-DST_EMAIL       = "x"
-DST_API_TOKEN   = "x"
+DST_BASE_URL    = "https://outro-dominio.atlassian.net"
+DST_EMAIL       = "seu-email@empresa.com"
+DST_API_TOKEN   = "seu_token_aqui"
 DST_ACCOUNT_ID  = "" # deixe vazio
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -359,12 +359,12 @@ def main():
 
             print(f"   🔹 [{issue_key}] -> [{target_issue}] | {seconds_to_hm(time_seconds)}")
             print(f"      ✅ Registrado com sucesso.")
-            # r = dst_post_worklog(target_issue, started_str, time_seconds, description)
+            r = dst_post_worklog(target_issue, started_str, time_seconds, description)
             
-            # if r.ok:
-            #     print(f"      ✅ Registrado com sucesso.")
-            # else:
-            #     print(f"      ❌ Erro: {r.status_code}")
+            if r.ok:
+                print(f"      ✅ Registrado com sucesso.")
+            else:
+                print(f"      ❌ Erro: {r.status_code}")
 
     print("✅ Sincronização concluída.")
 
